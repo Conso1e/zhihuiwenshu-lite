@@ -4,19 +4,16 @@ PyInstaller spec — macOS .app 打包配置
 构建命令: pyinstaller 智汇文枢_macos.spec
 """
 
-import sys
-from pathlib import Path
-
 # -------- 图标处理 --------
-# macOS 需要 .icns 格式。如果有 icon.icns 文件则使用，否则跳过图标
+# macOS 需要 .icns 格式。如果有 icon.icns/icon.png 文件则使用，否则跳过图标
+# SPECPATH 是 PyInstaller 内置变量，指向 spec 文件所在目录
+import os
+_spec_dir = SPECPATH
 icon_path = None
-candidates = [
-    Path(__file__).parent / 'icon.icns',
-    Path(__file__).parent / 'icon.png',
-]
-for c in candidates:
-    if c.exists():
-        icon_path = str(c)
+for fname in ['icon.icns']:
+    c = os.path.join(_spec_dir, fname)
+    if os.path.exists(c):
+        icon_path = c
         break
 
 # -------- hidden imports --------

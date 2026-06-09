@@ -28,6 +28,27 @@ jobs:
           pip install -r requirements.txt
           pip install pyinstaller
 
+      - name: Convert icon.jpg to macOS .icns
+        run: |
+          if [ -f icon.jpg ]; then
+            echo "Converting icon.jpg to icon.icns..."
+            mkdir app.iconset
+            sips -z 16 16   icon.jpg --out app.iconset/icon_16x16.png
+            sips -z 32 32   icon.jpg --out app.iconset/icon_16x16@2x.png
+            sips -z 32 32   icon.jpg --out app.iconset/icon_32x32.png
+            sips -z 64 64   icon.jpg --out app.iconset/icon_32x32@2x.png
+            sips -z 128 128 icon.jpg --out app.iconset/icon_128x128.png
+            sips -z 256 256 icon.jpg --out app.iconset/icon_128x128@2x.png
+            sips -z 256 256 icon.jpg --out app.iconset/icon_256x256.png
+            sips -z 512 512 icon.jpg --out app.iconset/icon_256x256@2x.png
+            sips -z 512 512 icon.jpg --out app.iconset/icon_512x512.png
+            iconutil -c icns app.iconset -o icon.icns
+            rm -rf app.iconset
+            echo "icon.icns created successfully"
+          else
+            echo "No icon.jpg found, skipping icon generation"
+          fi
+
       - name: Build macOS .app with PyInstaller
         run: |
           python -m PyInstaller 智汇文枢_macos.spec --clean --noconfirm
