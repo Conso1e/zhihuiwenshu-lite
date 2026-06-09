@@ -1,0 +1,45 @@
+name: Build Windows App
+
+on:
+  push:
+    branches: [main, master]
+    paths-ignore:
+      - '*.md'
+      - '.gitignore'
+      - '.claude/**'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller
+
+      - name: Build Windows .exe with PyInstaller
+        run: |
+          python -m PyInstaller 自动填充宝_lite.spec --clean --noconfirm
+
+      - name: Verify output
+        run: |
+          echo "=== Dist files ==="
+          dir dist\
+
+      - name: Upload .exe artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: 智汇文枢-Windows-exe
+          path: dist/智汇文枢 Lite.exe
+          retention-days: 30
