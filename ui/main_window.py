@@ -133,8 +133,8 @@ class PaymentApp(ctk.CTk):
 
         # 导航按钮（带左侧指示条）
         nav_btns = [
-            ("📖  使用教程", self.show_tutorial),
-            ("ℹ️  关于软件", self.show_about),
+            ("使用教程", self.show_tutorial),
+            ("关于软件", self.show_about),
         ]
         self._nav_indicators = []
         for text, cmd in nav_btns:
@@ -182,7 +182,7 @@ class PaymentApp(ctk.CTk):
         bottom_frame.pack(fill="x", padx=10, pady=12)
 
         self.theme_label = ctk.CTkLabel(
-            bottom_frame, text="🌙 深色模式",
+            bottom_frame, text="深色模式",
             font=ctk.CTkFont(size=13, weight="bold"),
             text_color=sd['sidebar_text'],
         )
@@ -201,13 +201,13 @@ class PaymentApp(ctk.CTk):
     def _on_theme_switch(self):
         self.toggle_theme()
         self.theme_label.configure(
-            text="🌙 深色模式" if self._dark_mode else "☀️ 浅色模式"
+            text="深色模式" if self._dark_mode else "浅色模式"
         )
 
     # 初始化时同步标签（默认浅色）
     def _sync_theme_label(self):
         self.theme_label.configure(
-            text="🌙 深色模式" if self._dark_mode else "☀️ 浅色模式"
+            text="深色模式" if self._dark_mode else "浅色模式"
         )
 
     # ====================== 消息队列处理 ======================
@@ -357,9 +357,13 @@ class PaymentApp(ctk.CTk):
         btn_frame = ctk.CTkFrame(dialog, fg_color="transparent")
         btn_frame.pack(fill="x", padx=20, pady=10)
         ctk.CTkButton(btn_frame, text="确定", fg_color=c['accent'],
-                      hover_color=c['accent_hover'], command=on_ok).pack(side="left", padx=10)
+                      hover_color=c['accent_hover'], corner_radius=6,
+                      font=ctk.CTkFont(size=13, weight="bold"),
+                      command=on_ok).pack(side="left", padx=10)
         ctk.CTkButton(btn_frame, text="取消", fg_color=c['card_border'],
-                      hover_color=c['sidebar_hover'], command=on_cancel).pack(side="right", padx=10)
+                      hover_color=c['sidebar_hover'], corner_radius=6,
+                      font=ctk.CTkFont(size=13, weight="bold"),
+                      command=on_cancel).pack(side="right", padx=10)
 
         dialog.wait_window()
         return self.preview_extra_columns
@@ -392,11 +396,13 @@ class PaymentApp(ctk.CTk):
             row_num_var.set(False)
             for v in check_vars.values(): v.set(False)
 
-        ctk.CTkButton(btn_bar, text="✅ 全选", width=80,
+        ctk.CTkButton(btn_bar, text="全选", width=80,
                       fg_color=c['success'], hover_color=c['success_hover'],
+                      font=ctk.CTkFont(size=13, weight="bold"), corner_radius=6,
                       command=_all_true).pack(side="left", padx=5)
-        ctk.CTkButton(btn_bar, text="❌ 全不选", width=80,
+        ctk.CTkButton(btn_bar, text="取消全选", width=80,
                       fg_color=c['danger'], hover_color=c['danger_hover'],
+                      font=ctk.CTkFont(size=13, weight="bold"), corner_radius=6,
                       command=_all_false).pack(side="left", padx=5)
 
         scroll = ctk.CTkScrollableFrame(main_frame, label_text="请按顺序勾选要加入文件名的列（可拖动排序）",
@@ -464,9 +470,11 @@ class PaymentApp(ctk.CTk):
         btn_frame = ctk.CTkFrame(dialog, fg_color="transparent")
         btn_frame.pack(fill="x", padx=20, pady=10)
         ctk.CTkButton(btn_frame, text="确定", fg_color=c['accent'],
-                      hover_color=c['accent_hover'], command=on_ok).pack(side="left", padx=10)
+                      hover_color=c['accent_hover'], corner_radius=6,
+                      font=ctk.CTkFont(size=13, weight="bold"),
+                      command=on_ok).pack(side="left", padx=10)
         ctk.CTkButton(btn_frame, text="取消", fg_color=c['accent'],
-                      hover_color=c['accent_hover'], text_color="#ffffff",
+                      hover_color=c['accent_hover'], text_color="#ffffff", corner_radius=6,
                       command=dialog.destroy).pack(side="right", padx=10)
 
         dialog.wait_window()
@@ -515,7 +523,7 @@ class PaymentApp(ctk.CTk):
                          font=ctk.CTkFont(family="Microsoft YaHei", size=13),
                          text_color=c['text_secondary'], justify="left",
                          ).pack(padx=30, pady=(0, 2))
-            ctk.CTkLabel(main_frame, text="💬 微信: Sylvan_33ovo  |  📧 QQ: 1784692583",
+            ctk.CTkLabel(main_frame, text="微信: Sylvan_33ovo  |  QQ: 1784692583",
                          font=ctk.CTkFont(size=13, weight="bold"),
                          text_color=c['accent']).pack(pady=(0, 8))
 
@@ -524,6 +532,7 @@ class PaymentApp(ctk.CTk):
 
         ctk.CTkButton(main_frame, text="关闭", width=120, height=36,
                       fg_color=c['accent'], hover_color=c['accent_hover'],
+                      corner_radius=6,
                       font=ctk.CTkFont(size=15, weight="bold"),
                       command=about_window.destroy).pack(pady=(12, 16))
 
@@ -618,6 +627,7 @@ class PaymentApp(ctk.CTk):
 
         ctk.CTkButton(main_frame, text="知道了", width=120, height=36,
                       fg_color=c['accent'], hover_color=c['accent_hover'],
+                      corner_radius=6,
                       font=ctk.CTkFont(size=16, weight="bold"),
                       command=tutorial_window.destroy).pack(pady=(6, 16))
 
@@ -677,7 +687,7 @@ class PaymentApp(ctk.CTk):
             ctk.CTkButton(
                 self._file_card, text="浏览", width=60, height=32,
                 fg_color=c['sidebar_hover'], hover_color=c['accent'],
-                text_color="#ffffff",
+                text_color="#ffffff", corner_radius=6,
                 font=ctk.CTkFont(size=14, weight="bold"),
                 command=cmd,
             ).grid(row=i + 1, column=2, padx=(4, 16), pady=5)
@@ -719,7 +729,7 @@ class PaymentApp(ctk.CTk):
             self.formula_btn = ctk.CTkButton(
                 self._template_card, text="公式编辑", width=80, height=32,
                 fg_color=c['sidebar_hover'], hover_color=c['accent'], text_color="#ffffff",
-                font=ctk.CTkFont(size=13, weight="bold"),
+                font=ctk.CTkFont(size=13, weight="bold"), corner_radius=6,
                 command=self.open_formula_editor, state="disabled",
             )
             self.formula_btn.grid(row=1, column=2, padx=(8, 16), pady=6, sticky="e")
@@ -754,25 +764,25 @@ class PaymentApp(ctk.CTk):
         self._action_card.grid_columnconfigure((0, 1, 2), weight=1)
 
         self.process_btn = ctk.CTkButton(
-            self._action_card, text="🔧 处理原始数据", height=44,
+            self._action_card, text="处理原始数据", height=40,
             fg_color=c['accent'], hover_color=c['accent_hover'],
-            font=ctk.CTkFont(size=14, weight="bold"),
+            font=ctk.CTkFont(size=14, weight="bold"), corner_radius=6,
             command=self.process_excel,
         )
         self.process_btn.grid(row=0, column=0, padx=12, pady=14, sticky="ew")
 
         self.generate_btn = ctk.CTkButton(
-            self._action_card, text="📝 生成目标文档", height=44,
+            self._action_card, text="生成目标文档", height=40,
             fg_color=c['success'], hover_color=c['success_hover'],
-            font=ctk.CTkFont(size=14, weight="bold"),
+            font=ctk.CTkFont(size=14, weight="bold"), corner_radius=6,
             state="disabled", command=self.generate_selected,
         )
 
         self.preview_btn = ctk.CTkButton(
-            self._action_card, text="👁 单份预览", height=44,
+            self._action_card, text="单份预览", height=40,
             fg_color=c['warning'], hover_color=c['sidebar_hover'],
             text_color=c['text_primary'],
-            font=ctk.CTkFont(size=14, weight="bold"),
+            font=ctk.CTkFont(size=14, weight="bold"), corner_radius=6,
             state="disabled", command=self.preview_single,
         )
         self.generate_btn.grid(row=0, column=1, padx=12, pady=14, sticky="ew")
@@ -793,19 +803,22 @@ class PaymentApp(ctk.CTk):
         self._ctrl_card.grid(row=5, column=0, padx=20, pady=(2, 0), sticky="ew")
 
         ctk.CTkButton(
-            self._ctrl_card, text="✅ 全选", width=90, height=32,
+            self._ctrl_card, text="全选", width=80, height=30,
             fg_color=c['success'], hover_color=c['success_hover'],
-            font=ctk.CTkFont(size=14, weight="bold"), command=self.select_all,
+            font=ctk.CTkFont(size=13, weight="bold"), corner_radius=6,
+            command=self.select_all,
         ).pack(side="left", padx=12, pady=8)
         ctk.CTkButton(
-            self._ctrl_card, text="❌ 全不选", width=90, height=32,
+            self._ctrl_card, text="取消全选", width=80, height=30,
             fg_color=c['danger'], hover_color=c['danger_hover'],
-            font=ctk.CTkFont(size=14, weight="bold"), command=self.clear_all,
+            font=ctk.CTkFont(size=13, weight="bold"), corner_radius=6,
+            command=self.clear_all,
         ).pack(side="left", padx=4, pady=8)
         ctk.CTkButton(
-            self._ctrl_card, text="📋 选择预览列", width=120, height=32,
+            self._ctrl_card, text="选择预览列", width=100, height=30,
             fg_color=c['sidebar_hover'], hover_color=c['accent'], text_color="#ffffff",
-            font=ctk.CTkFont(size=14, weight="bold"), command=self.choose_preview_columns,
+            font=ctk.CTkFont(size=13, weight="bold"), corner_radius=6,
+            command=self.choose_preview_columns,
         ).pack(side="right", padx=12, pady=8)
 
         # ===== 预览区 =====
@@ -1047,12 +1060,12 @@ class PaymentApp(ctk.CTk):
         btn_bar.pack(fill="x", padx=16, pady=(8, 16))
         ctk.CTkButton(btn_bar, text="开始处理", height=36,
                       fg_color=c['success'], hover_color=c['success_hover'],
-                      text_color="#ffffff",
+                      text_color="#ffffff", corner_radius=6,
                       font=ctk.CTkFont(size=15, weight="bold"),
                       command=on_confirm).pack(side="left", padx=6)
         ctk.CTkButton(btn_bar, text="取消", height=36,
                       fg_color=c['danger'], hover_color=c['danger_hover'],
-                      text_color="#ffffff",
+                      text_color="#ffffff", corner_radius=6,
                       font=ctk.CTkFont(size=15, weight="bold"),
                       command=dlg.destroy).pack(side="right", padx=6)
 
@@ -1114,8 +1127,8 @@ class PaymentApp(ctk.CTk):
         display_columns = fixed_columns + self.preview_extra_columns
         col_widths = [30, 50, 200] + [150] * len(self.preview_extra_columns)
         c = self.colors
-        # 深色: 极微妙交替色; 浅色: 淡灰
-        alt_bg = c['sidebar_hover'] if self._dark_mode else "#f1f5f9"
+        # 深色: 极微妙交替色; 浅色: 冷灰
+        alt_bg = c['sidebar_hover'] if self._dark_mode else "#F8FAFC"
         text_c = c['text_primary']
 
         for col_idx in range(len(display_columns)):
@@ -1557,10 +1570,11 @@ class PaymentApp(ctk.CTk):
         btn_frame = ctk.CTkFrame(dialog, fg_color="transparent")
         btn_frame.pack(fill="x", padx=16, pady=(4, 14))
         ctk.CTkButton(btn_frame, text="保存公式", height=36, fg_color=c['accent'],
-                      hover_color=c['accent_hover'], font=ctk.CTkFont(size=15, weight="bold"),
+                      hover_color=c['accent_hover'], corner_radius=6,
+                      font=ctk.CTkFont(size=15, weight="bold"),
                       command=save).pack(side="left", padx=6)
         ctk.CTkButton(btn_frame, text="取消", height=36, fg_color=c['sidebar_hover'],
-                      hover_color=c['accent'], text_color="#ffffff",
+                      hover_color=c['accent'], text_color="#ffffff", corner_radius=6,
                       font=ctk.CTkFont(size=15, weight="bold"),
                       command=on_close).pack(side="right", padx=6)
 
@@ -1621,14 +1635,17 @@ class PaymentApp(ctk.CTk):
         btn_bar.pack(fill="x", padx=16, pady=(8, 16))
 
         if unmatched:
-            ctk.CTkButton(btn_bar, text="🔧 自动补全缺失列到 Excel", height=32,
+            ctk.CTkButton(btn_bar, text="自动补全缺失列到 Excel", height=34,
                           fg_color=c['success'], hover_color=c['success_hover'],
-                          text_color="#ffffff",
+                          text_color="#ffffff", corner_radius=6,
+                          font=ctk.CTkFont(size=13, weight="bold"),
                           command=lambda: self._auto_fill_missing_columns(unmatched, dialog),
                           ).pack(side="left", padx=6)
 
-        ctk.CTkButton(btn_bar, text="关闭", width=100, height=32,
+        ctk.CTkButton(btn_bar, text="关闭", width=100, height=34,
                       fg_color=c['accent'], hover_color=c['accent_hover'],
+                      corner_radius=6,
+                      font=ctk.CTkFont(size=13, weight="bold"),
                       command=dialog.destroy).pack(side="right", padx=6)
 
     def _auto_fill_missing_columns(self, unmatched, dialog):
@@ -1698,7 +1715,7 @@ class PaymentApp(ctk.CTk):
                             border_width=1, border_color=c['card_border'])
         card.pack(fill="both", expand=True, padx=16, pady=16)
 
-        ctk.CTkLabel(card, text="🆔 身份证号处理",
+        ctk.CTkLabel(card, text="身份证号处理",
                      font=ctk.CTkFont(family="Microsoft YaHei", size=18, weight="bold"),
                      text_color=c['accent']).pack(pady=(16, 4))
         ctk.CTkLabel(card, text="自动从身份证号提取性别、出生年月日",
@@ -1886,10 +1903,11 @@ class PaymentApp(ctk.CTk):
         btn_frame = ctk.CTkFrame(card, fg_color="transparent")
         btn_frame.pack(fill="x", padx=16, pady=(0, 14))
         ctk.CTkButton(btn_frame, text="确认", height=36, fg_color=c['accent'],
-                      hover_color=c['accent_hover'], font=ctk.CTkFont(size=15, weight="bold"),
+                      hover_color=c['accent_hover'], corner_radius=6,
+                      font=ctk.CTkFont(size=15, weight="bold"),
                       command=on_confirm).pack(side="left", padx=6)
         ctk.CTkButton(btn_frame, text="取消", height=36, fg_color=c['sidebar_hover'],
-                      hover_color=c['accent'], text_color="#ffffff",
+                      hover_color=c['accent'], text_color="#ffffff", corner_radius=6,
                       font=ctk.CTkFont(size=15, weight="bold"),
                       command=on_cancel).pack(side="right", padx=6)
 

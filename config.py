@@ -69,51 +69,54 @@ MAX_FILENAME_LENGTH = 200
 MAX_PATH_LENGTH = 240
 
 # ====================== UI 配色常量 ======================
-# 深色主题 — 靛紫系 (Indigo/Violet)
+# 设计系统：Trust & Authority + Swiss Modernism 2.0
+# 法律文书工具 — 权威海军蓝 + 信任琥珀金
+#
+# 深色主题
 DARK = {
-    'sidebar_bg': "#111122",
-    'sidebar_hover': "#222244",
-    'sidebar_text': "#a0a0c0",
-    'sidebar_active': "#c7d2fe",
-    'main_bg': "#0d0d1a",
-    'card_bg': "#181830",
-    'card_border': "#2e2e55",
-    'accent': "#c7d2fe",
-    'accent_hover': "#a5b4fc",
-    'accent_light': "#252570",
-    'text_primary': "#f4f4ff",
-    'text_secondary': "#c0c0dd",
-    'danger': "#fca5a5",
-    'danger_hover': "#f87171",
-    'success': "#6ee7b7",
-    'success_hover': "#34d399",
-    'warning': "#fcd34d",
-    'entry_bg': "#111128",
-    'entry_border': "#353560",
-    'header_bg': "#1e1e48",
+    'sidebar_bg': "#0A0F1A",          # 极深海军蓝侧边栏
+    'sidebar_hover': "#1E293B",        # Slate-800
+    'sidebar_text': "#64748B",         # Slate-500
+    'sidebar_active': "#F59E0B",       # 琥珀金活跃指示
+    'main_bg': "#0F172A",              # Slate-900
+    'card_bg': "#1E293B",              # Slate-800 卡片
+    'card_border': "#334155",          # Slate-700 边框
+    'accent': "#60A5FA",               # Blue-400（深色下提亮）
+    'accent_hover': "#93BBFD",         # Blue-300
+    'accent_light': "#1E3A5F",         # 深蓝底
+    'text_primary': "#F1F5F9",         # Slate-100
+    'text_secondary': "#94A3B8",       # Slate-400
+    'danger': "#FCA5A5",               # Red-300
+    'danger_hover': "#F87171",         # Red-400
+    'success': "#6EE7B7",              # Emerald-300
+    'success_hover': "#34D399",        # Emerald-400
+    'warning': "#FCD34D",              # Amber-300
+    'entry_bg': "#0F172A",
+    'entry_border': "#475569",         # Slate-600
+    'header_bg': "#1E293B",
 }
-# 浅色主题 — 靛紫系
+# 浅色主题
 LIGHT = {
-    'sidebar_bg': "#1e1b4b",
-    'sidebar_hover': "#312e81",
-    'sidebar_text': "#a5b4fc",
-    'sidebar_active': "#c7d2fe",
-    'main_bg': "#f5f3ff",
-    'card_bg': "#ffffff",
-    'card_border': "#e0e7ff",
-    'accent': "#6366f1",
-    'accent_hover': "#4f46e5",
-    'accent_light': "#eef2ff",
-    'text_primary': "#1e1b4b",
-    'text_secondary': "#6b7280",
-    'danger': "#ef4444",
-    'danger_hover': "#dc2626",
-    'success': "#10b981",
-    'success_hover': "#059669",
-    'warning': "#f59e0b",
-    'entry_bg': "#fafafe",
-    'entry_border': "#c7d2fe",
-    'header_bg': "#eef2ff",
+    'sidebar_bg': "#0F172A",           # 深海军蓝侧边栏（浅色模式也保持深色）
+    'sidebar_hover': "#1E293B",        # Slate-800
+    'sidebar_text': "#94A3B8",         # Slate-400
+    'sidebar_active': "#F59E0B",       # 琥珀金活跃指示
+    'main_bg': "#F8FAFC",              # Slate-50 冷灰背景
+    'card_bg': "#FFFFFF",              # 白卡片
+    'card_border': "#E2E8F0",          # Slate-200 边框
+    'accent': "#1E40AF",               # Navy-800 主色
+    'accent_hover': "#1E3A8A",         # Navy-900 hover
+    'accent_light': "#EFF6FF",         # Blue-50 淡底
+    'text_primary': "#0F172A",         # Slate-900 正文
+    'text_secondary': "#64748B",       # Slate-500 辅助文字
+    'danger': "#DC2626",               # Red-600
+    'danger_hover': "#B91C1C",         # Red-700
+    'success': "#059669",              # Emerald-600
+    'success_hover': "#047857",        # Emerald-700
+    'warning': "#D97706",              # Amber-600
+    'entry_bg': "#FFFFFF",
+    'entry_border': "#CBD5E1",         # Slate-300
+    'header_bg': "#F1F5F9",            # Slate-100
 }
 
 # 房屋类型 → 默认单价映射

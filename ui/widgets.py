@@ -41,9 +41,9 @@ class TwoWayScrollableFrame(ctk.CTkFrame):
 
     def _get_theme_bg(self):
         if ctk.get_appearance_mode() == "light":
-            return "#f0f2f5"
+            return "#F8FAFC"
         else:
-            return "#2b2b2b"
+            return "#0F172A"
 
     def update_theme_colors(self):
         new_bg = self._get_theme_bg()
