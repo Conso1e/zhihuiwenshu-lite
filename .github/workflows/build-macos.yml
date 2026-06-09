@@ -1,0 +1,68 @@
+name: Build macOS App
+
+on:
+  push:
+    branches: [main, master]
+    paths-ignore:
+      - '*.md'
+      - '.gitignore'
+      - '.claude/**'
+  workflow_dispatch:  # 允许手动触发
+
+jobs:
+  build:
+    runs-on: macos-latest  # macOS ARM64 (Apple Silicon) 虚拟机
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller
+
+      - name: Build macOS .app with PyInstaller
+        run: |
+          python -m PyInstaller 智汇文枢_macos.spec --clean --noconfirm
+
+      - name: Verify .app structure
+        run: |
+          echo "=== .app bundle ==="
+          ls -la dist/
+          echo ""
+          echo "=== Bundle contents ==="
+          ls -la dist/智汇文枢.app/Contents/MacOS/ 2>/dev/null || echo "checking structure..."
+          find dist/智汇文枢.app -maxdepth 3 -type f | head -30
+
+      - name: Package as DMG
+        run: |
+          # 打包为 DMG 方便分发
+          APP_PATH="dist/智汇文枢.app"
+          DMG_PATH="dist/智汇文枢_v4.0_macOS.dmg"
+          if [ -d "$APP_PATH" ]; then
+            hdiutil create -volname "智汇文枢" -srcfolder "$APP_PATH" -ov -format UDZO "$DMG_PATH"
+            echo "DMG created at $DMG_PATH"
+          else
+            echo "ERROR: .app not found, skipping DMG"
+          fi
+
+      - name: Upload .app artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: 智汇文枢-macOS-app
+          path: dist/智汇文枢.app
+          retention-days: 30
+
+      - name: Upload DMG artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: 智汇文枢-macOS-DMG
+          path: dist/智汇文枢_v4.0_macOS.dmg
+          retention-days: 30

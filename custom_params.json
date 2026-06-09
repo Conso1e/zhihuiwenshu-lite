@@ -1,0 +1,11 @@
+{
+  "property_months": 48,
+  "property_extra_days": 0,
+  "days_per_month": 30,
+  "penalty_days": 700,
+  "parking_fee": 60.0,
+  "energy_fee": 0.5,
+  "water_rate": 5.0,
+  "daily_rate": 0.0001,
+  "enable_water": true
+}

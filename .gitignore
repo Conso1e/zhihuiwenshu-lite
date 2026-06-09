@@ -1,0 +1,33 @@
+# 虚拟环境
+venv_new/
+.venv/
+venv/
+env/
+
+# 构建产物
+build/
+dist/
+*.pyz
+
+# Python 缓存
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Claude
+.claude/
+.agents/
+
+# 其他
+*.log
+*.tmp

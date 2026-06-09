@@ -1,0 +1,25 @@
+wing: "\u8BC9\u72B6\u751F\u6210"
+rooms:
+- name: backend
+  description: Files from models/
+  keywords:
+  - backend
+  - models
+- name: frontend
+  description: Files from ui/
+  keywords:
+  - frontend
+  - ui
+- name: venv_new
+  description: Files from venv_new/
+  keywords:
+  - venv_new
+  - venv_new
+- name: scripts
+  description: Files from Scripts/
+  keywords:
+  - scripts
+  - scripts
+- name: general
+  description: Files that don't fit other rooms
+  keywords: []
